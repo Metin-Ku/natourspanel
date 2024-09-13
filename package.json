@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "NODE_ENV=development node server.js",
+    "start": "NODE_ENV=production node server.js",
     "start:prod": "SET NODE_ENV=production && nodemon server.js",
     "build": "npm install",
     "debug": "ndb server.js",
@@ -69,8 +69,5 @@
     "prettier": "^3.0.1",
     "sass": "^1.66.1",
     "stylelint": "^15.10.2"
-  },
-  "engines": {
-    "node": "^10"
   }
 }
