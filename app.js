@@ -14,17 +14,46 @@ const i18next = require('i18next');
 const i18backend = require('i18next-fs-backend');
 const i18middleware = require('i18next-http-middleware');
 
-
 const AppError = require('./utils/appError');
+
+console.log('1');
+
 const globalErrorHandler = require('./controllers/errorController');
+
+console.log('2');
+
 const tourRouter = require('./routes/tourRoutes');
+
+console.log('3');
+
 const userRouter = require('./routes/userRoutes');
+
+console.log('4');
+
 const reviewRouter = require('./routes/reviewRoutes');
+
+console.log('5');
+
 const bookingRouter = require('./routes/bookingRoutes');
+
+console.log('6');
+
 const difficultyRouter = require('./routes/difficultyRoutes');
+
+console.log('7');
+
 const roleRouter = require('./routes/roleRoutes');
+
+console.log('8');
+
 const sliderRouter = require('./routes/sliderRoutes');
+
+console.log('9');
+
 const viewRouter = require('./routes/viewRoutes');
+
+console.log('11');
+
 const adminViewRouter = require('./routes/Admin/viewRoutes');
 
 console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
