@@ -12729,7 +12729,7 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; } /* eslint-disable */
 var login = exports.login = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(email, password) {
-    var res;
+    var res, errorMessage;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -12746,19 +12746,21 @@ var login = exports.login = /*#__PURE__*/function () {
         case 3:
           res = _context.sent;
           if (res.data.status === 'success') {
-            // showAlert('success', 'Logged in succesfully!');
-            (0, _alerts.showAlert)('success', res.data.message);
+            (0, _alerts.showAlert)('success', res.data.message || 'Logged in successfully!');
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
           }
-          _context.next = 10;
+          _context.next = 12;
           break;
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
-          (0, _alerts.showAlert)('error', _context.t0.response.data.message);
-        case 10:
+          console.log("err: ", _context.t0);
+          // Hata yanıtı yoksa genel bir mesaj göster
+          errorMessage = _context.t0.response && _context.t0.response.data && _context.t0.response.data.message || 'Something went wrong. Please try again later.';
+          (0, _alerts.showAlert)('error', errorMessage);
+        case 12:
         case "end":
           return _context.stop();
       }
@@ -17791,7 +17793,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52015" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55114" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

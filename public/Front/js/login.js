@@ -15,16 +15,21 @@ export const login = async (email, password) => {
     });
 
     if (res.data.status === 'success') {
-      // showAlert('success', 'Logged in succesfully!');
-      showAlert('success', res.data.message);
+      showAlert('success', res.data.message || 'Logged in successfully!');
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
   } catch (err) {
-    showAlert('error', err.response.data.message);
+    console.log("err: ", err)
+    // Hata yanıtı yoksa genel bir mesaj göster
+    const errorMessage =
+      (err.response && err.response.data && err.response.data.message) ||
+      'Something went wrong. Please try again later.';
+    showAlert('error', errorMessage);
   }
 };
+
 
 export const logout = async () => {
   try {
