@@ -2,7 +2,7 @@ const fs = require('fs');
 const multer = require('multer');
 // const sharp = require('sharp');
 const Tour = require('../models/tourModel');
-const ImageSize = require('../models/imageSizeModel');
+// const ImageSize = require('../models/imageSizeModel');
 // const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -85,7 +85,6 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
     //   .toFormat('jpeg')
     //   .jpeg({ quality: 90 })
     //   .toFile(`public/img/tours/original/${req.body.imageCover}`);
-      
     // await sharp(req.files.imageCover[0].buffer)
     //   .resize(100, 100)
     //   .toFormat('jpeg')
