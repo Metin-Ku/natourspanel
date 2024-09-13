@@ -1,6 +1,6 @@
 const fs = require('fs');
 const multer = require('multer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -41,16 +41,16 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   }
 
   // görseli kırpma
-  await sharp(req.file.buffer)
-    .resize(100, 100)
-    .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/users/original/${req.file.filename}`);
-  await sharp(req.file.buffer)
-    .resize(100, 100)
-    .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/users/thumb/${req.file.filename}`);
+  // await sharp(req.file.buffer)
+  //   .resize(100, 100)
+  //   .toFormat('jpeg')
+  //   .jpeg({ quality: 90 })
+  //   .toFile(`public/img/users/original/${req.file.filename}`);
+  // await sharp(req.file.buffer)
+  //   .resize(100, 100)
+  //   .toFormat('jpeg')
+  //   .jpeg({ quality: 90 })
+  //   .toFile(`public/img/users/thumb/${req.file.filename}`);
 
   next();
 });

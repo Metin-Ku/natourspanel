@@ -1,6 +1,6 @@
 const fs = require('fs');
 const multer = require('multer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const Tour = require('../models/tourModel');
 const ImageSize = require('../models/imageSizeModel');
 // const APIFeatures = require('../utils/apiFeatures');
@@ -80,17 +80,17 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
     req.body.imageCover = `tour-${Date.now()}-cover.jpeg`;
     // görseli kırpma
     // 2000, 1333 => 2/3 ratio kullanımı yaygın
-    await sharp(req.files.imageCover[0].buffer)
-      // .resize(2000, 1333)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/tours/original/${req.body.imageCover}`);
+    // await sharp(req.files.imageCover[0].buffer)
+    //   // .resize(2000, 1333)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/tours/original/${req.body.imageCover}`);
       
-    await sharp(req.files.imageCover[0].buffer)
-      .resize(100, 100)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/tours/thumb/${req.body.imageCover}`);
+    // await sharp(req.files.imageCover[0].buffer)
+    //   .resize(100, 100)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/tours/thumb/${req.body.imageCover}`);
   }
 
   if (req.files.images) {
@@ -110,20 +110,20 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
       return next(new AppError('En fazla 3 resim yükleyebilirsiniz.', 400));
     }
 
-    await Promise.all(
-      req.files.images.map(async (file, i) => {
-        // const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
-        const filename = `tour-${Date.now()}-${i + 1}.jpeg`;
+    // await Promise.all(
+    //   req.files.images.map(async (file, i) => {
+    //     // const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+    //     const filename = `tour-${Date.now()}-${i + 1}.jpeg`;
 
-        await sharp(file.buffer)
-          // .resize(2000, 1333)
-          .toFormat('jpeg')
-          .jpeg({ quality: 90 })
-          .toFile(`public/img/tours/original/${filename}`);
+    //     await sharp(file.buffer)
+    //       // .resize(2000, 1333)
+    //       .toFormat('jpeg')
+    //       .jpeg({ quality: 90 })
+    //       .toFile(`public/img/tours/original/${filename}`);
 
-        req.body.images.push(filename);
-      }),
-    );
+    //     req.body.images.push(filename);
+    //   }),
+    // );
   }
   // ikiside çalışıyor
   // for (let i = 0; i < req.files.images.length; i++) {

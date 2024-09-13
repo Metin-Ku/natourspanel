@@ -1,6 +1,6 @@
 const fs = require('fs');
 const multer = require('multer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const Slider = require('../models/sliderModel');
 const ImageSize = require('../models/imageSizeModel');
 // const APIFeatures = require('../utils/apiFeatures');
@@ -49,17 +49,17 @@ exports.resizeSliderImages = catchAsync(async (req, res, next) => {
       );
     }
     req.body.imageOriginal = `slider-${Date.now()}.jpeg`;
-    await sharp(req.files.imageOriginal[0].buffer)
-      .resize(2000, 1333)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/sliders/original/${req.body.imageOriginal}`);
+    // await sharp(req.files.imageOriginal[0].buffer)
+    //   .resize(2000, 1333)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/sliders/original/${req.body.imageOriginal}`);
 
-    await sharp(req.files.imageOriginal[0].buffer)
-      .resize(100, 100)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/sliders/thumb/${req.body.imageOriginal}`);
+    // await sharp(req.files.imageOriginal[0].buffer)
+    //   .resize(100, 100)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/sliders/thumb/${req.body.imageOriginal}`);
   }
   if (req.files.imageLarge) {
     const imageLarge = await Slider.findById(req.params.id).select(
@@ -69,11 +69,11 @@ exports.resizeSliderImages = catchAsync(async (req, res, next) => {
       fs.unlink(`public/img/sliders/large/${imageLarge.imageLarge}`, () => {});
     }
     req.body.imageLarge = `slider-${Date.now()}.jpeg`;
-    await sharp(req.files.imageLarge[0].buffer)
-      .resize(1280, 800)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/sliders/large/${req.body.imageLarge}`);
+    // await sharp(req.files.imageLarge[0].buffer)
+    //   .resize(1280, 800)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/sliders/large/${req.body.imageLarge}`);
   }
   if (req.files.imageMedium) {
     const imageMedium = await Slider.findById(req.params.id).select(
@@ -86,11 +86,11 @@ exports.resizeSliderImages = catchAsync(async (req, res, next) => {
       );
     }
     req.body.imageMedium = `slider-${Date.now()}.jpeg`;
-    await sharp(req.files.imageMedium[0].buffer)
-      .resize(768, 1024)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/sliders/medium/${req.body.imageMedium}`);
+    // await sharp(req.files.imageMedium[0].buffer)
+    //   .resize(768, 1024)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/sliders/medium/${req.body.imageMedium}`);
   }
   if (req.files.imageSmall) {
     const imageSmall = await Slider.findById(req.params.id).select(
@@ -101,11 +101,11 @@ exports.resizeSliderImages = catchAsync(async (req, res, next) => {
       fs.unlink(`public/img/sliders/small/${imageSmall.imageSmall}`, () => {});
     }
     req.body.imageSmall = `slider-${Date.now()}.jpeg`;
-    await sharp(req.files.imageSmall[0].buffer)
-      .resize(480, 640)
-      .toFormat('jpeg')
-      .jpeg({ quality: 90 })
-      .toFile(`public/img/sliders/small/${req.body.imageSmall}`);
+    // await sharp(req.files.imageSmall[0].buffer)
+    //   .resize(480, 640)
+    //   .toFormat('jpeg')
+    //   .jpeg({ quality: 90 })
+    //   .toFile(`public/img/sliders/small/${req.body.imageSmall}`);
   }
 
   next();
