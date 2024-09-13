@@ -26,8 +26,12 @@ const sliderRouter = require('./routes/sliderRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const adminViewRouter = require('./routes/Admin/viewRoutes');
 
+console.log('xxxxxxxxxxxxxxxxxxxxxxxxx');
+
 const supportedLanguages = ['en', 'tr'];
 const fallbackLanguage = 'en';
+
+console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
 
 // middle ware of i18next adding a function to request and from that request(req) we get translation
 i18next
