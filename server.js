@@ -16,6 +16,7 @@ dotenv.config({ path: './config.env' });
 console.log('4444444444444444444444');
 
 const app = require('./app');
+
 console.log('55555555555555555555555555');
 
 console.log('process.env.DATABASE: ', process.env.DATABASE);

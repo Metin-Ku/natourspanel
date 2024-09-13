@@ -8,6 +8,12 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
+console.log('66666666666666666666');
+
+const i18next = require('i18next');
+const i18backend = require('i18next-fs-backend');
+const i18middleware = require('i18next-http-middleware');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -19,10 +25,6 @@ const roleRouter = require('./routes/roleRoutes');
 const sliderRouter = require('./routes/sliderRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const adminViewRouter = require('./routes/Admin/viewRoutes');
-
-const i18next = require('i18next');
-const i18backend = require('i18next-fs-backend');
-const i18middleware = require('i18next-http-middleware');
 
 const supportedLanguages = ['en', 'tr'];
 const fallbackLanguage = 'en';
@@ -39,8 +41,12 @@ i18next
     },
   });
 
+console.log('7777777777777777');
+
 const app = express();
 app.use(i18middleware.handle(i18next));
+
+console.log('8888888888888888888');
 
 // Custom handling for LanguageDetector
 i18next.on('languageChanged', (lng) => {
@@ -57,6 +63,7 @@ app.get('/change-language/:lang', (req, res) => {
   req.i18n.changeLanguage(lang); // Perform the language change operation
   res.redirect('/');
 });
+console.log('9999999999999999999');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
@@ -77,6 +84,7 @@ console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+console.log('1010000000000000000000000000000000');
 
 // Aynı ip'den çok istek atmasını engellemek için limit. Güvenlik önlemi. 1 saatte 100 istek. Bu proje için iyi bir limit ama farklı projelerde daha fazla isteğe ihtiyaç olursa arttırılabilir
 const limiter = rateLimit({
@@ -129,6 +137,7 @@ app.use((req, res, next) => {
 app.get('/api/v1/example', (req, res) => {
   res.send('Bu bir örnek API endpointidir.');
 });
+console.log('12222222222222222');
 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
