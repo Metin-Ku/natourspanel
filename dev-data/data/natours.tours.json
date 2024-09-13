@@ -1,0 +1,180 @@
+[{
+  "_id": {
+    "$oid": "5c88fa8cf4afda39709c2955"
+  },
+  "startLocation": {
+    "type": "Point",
+    "coordinates": [
+      -80.185942,
+      25.774772
+    ],
+    "description": "Miami, USA",
+    "address": "301 Biscayne Blvd, Miami, FL 33132, USA"
+  },
+  "ratingsAverage": 4.8,
+  "ratingsQuantity": 6,
+  "images": [
+    "tour-1700869240936-1.jpeg"
+  ],
+  "startDates": [
+    {
+      "$date": "2021-06-19T00:00:00.000Z"
+    },
+    {
+      "$date": "2021-07-20T00:00:00.000Z"
+    },
+    {
+      "$date": "2021-08-18T00:00:00.000Z"
+    }
+  ],
+  "name": "The Sea Explorers",
+  "duration": 5,
+  "maxGroupSize": 12,
+  "difficulty": "Easy",
+  "guides": [
+    {
+      "$oid": "655cfe7b893c3a17443f56f6"
+    }
+  ],
+  "price": 500,
+  "summary": "<p>sum</p>",
+  "description": "<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.ss</p>",
+  "imageCover": "tour-1700869251613-cover.jpeg",
+  "locations": [
+    {
+      "type": "Point",
+      "coordinates": [
+        -80.128473,
+        25.781842
+      ],
+      "_id": {
+        "$oid": "65a11666e3f8e33318162a1b"
+      },
+      "description": "Lummus Park Beach",
+      "address": "s",
+      "day": 1
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -80.647885,
+        24.909047
+      ],
+      "_id": {
+        "$oid": "65a11666e3f8e33318162a1c"
+      },
+      "description": "Islamorada",
+      "address": "s",
+      "day": 2
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -81.0784,
+        24.707496
+      ],
+      "_id": {
+        "$oid": "65a11666e3f8e33318162a1d"
+      },
+      "description": "Sombrero Beach",
+      "address": "s",
+      "day": 3
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -81.768719,
+        24.552242
+      ],
+      "_id": {
+        "$oid": "65a11666e3f8e33318162a1e"
+      },
+      "description": "West Key",
+      "address": "s",
+      "day": 5
+    }
+  ],
+  "active": true,
+  "secretTour": false,
+  "slug": "the-sea-explorers"
+},
+{
+  "_id": {
+    "$oid": "65b243b95abd473f5451dcac"
+  },
+  "startLocation": {
+    "type": "Point",
+    "coordinates": [
+      41.015137,
+      28.97953
+    ],
+    "description": "desc",
+    "address": "address"
+  },
+  "ratingsAverage": 4.5,
+  "ratingsQuantity": 0,
+  "images": [
+    "tour-1706181561197-2.jpeg",
+    "tour-1706181561199-3.jpeg",
+    "tour-1706181561196-1.jpeg"
+  ],
+  "createdAt": {
+    "$date": "2024-01-25T11:10:53.363Z"
+  },
+  "startDates": [
+    {
+      "$date": "2024-01-25T00:00:00.000Z"
+    },
+    {
+      "$date": "2024-01-26T00:00:00.000Z"
+    },
+    {
+      "$date": "2024-01-26T00:00:00.000Z"
+    }
+  ],
+  "secretTour": false,
+  "guides": [
+    {
+      "$oid": "655cfe7b893c3a17443f56f6"
+    }
+  ],
+  "active": true,
+  "name": "The Seven Hill",
+  "duration": 5,
+  "maxGroupSize": 8,
+  "difficulty": "Medium",
+  "price": 1000,
+  "locations": [
+    {
+      "type": "Point",
+      "coordinates": [
+        41.015137,
+        28.97953
+      ],
+      "_id": {
+        "$oid": "65b2449d5abd473f5451dd02"
+      },
+      "description": "desc2",
+      "address": "addres3",
+      "day": 2
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        41.015137,
+        28.97953
+      ],
+      "_id": {
+        "$oid": "65b2449d5abd473f5451dd03"
+      },
+      "description": "desc",
+      "address": "address3",
+      "day": 3
+    }
+  ],
+  "description": "<p>desc</p>",
+  "summary": "<p>sum</p>",
+  "imageCover": "tour-1706181561072-cover.jpeg",
+  "slug": "the-seven-hill",
+  "__v": 0
+}]

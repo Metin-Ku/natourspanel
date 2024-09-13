@@ -1,0 +1,80 @@
+extends ../_content
+
+mixin inputWithLabel(labelText, inputId, inputName, inputType)
+    .filter-form__box
+        label(for=inputId)= labelText
+        input(type=inputType, id=inputId, name=inputName)
+
+mixin selectWithLabel(labelText, selectName, options)
+    .filter-form__box
+        label(for=selectId)= labelText
+        select.filter-select(name=selectName, data-placeholder=labelText)
+            option
+            each option in options
+                option(value=option.value)= option.text
+
+mixin rangeSliderField(labelText, inputIdPrefix)
+  .range-sliders__box
+    label= labelText
+  - const inputId = `range-sliders__${inputIdPrefix}`
+  .range-slider(class=inputId)
+    input(id=inputIdPrefix + '-gte', name=inputIdPrefix + '-gte', type='hidden')
+    input(id=inputIdPrefix + '-lte', name=inputIdPrefix + '-lte', type='hidden')
+
+
+block content
+    .dashboard
+        .dashboard__header
+            h1.heading-1 Tours
+            .header-button
+        .dashboard__filter
+            form.filter-form(onsubmit="return false")
+                //- label, id, name, type
+                +inputWithLabel("Name", "name", "name", "text")
+                //- label, name, options
+                //- +selectWithLabel("Difficulty", "difficulty", [
+                //-     { value: "Easy", text: "Easy" },
+                //-     { value: "Medium", text: "Medium" },
+                //-     { value: "Difficult", text: "Difficult" }
+                //- ])
+                .filter-form__box
+                    label(for='difficulty') Difficulty
+                    select.filter-select(id='difficulty' name='difficulty' data-placeholder='Difficulty')
+                        option
+                        each difficulty in difficulties
+                            option(value=difficulty.level)= difficulty.level
+                +selectWithLabel("Status", "active", [
+                    { value: "true", text: "Active" },
+                    { value: "false", text: "Passive" }
+                ])
+                .filter-form__clear
+                    button.filter-clear Clear
+                .filter-form__search 
+                    button.filter-search Search
+            .range-sliders
+                //- label, filter name
+                +rangeSliderField("Duration", "duration")
+                +rangeSliderField("Max Group Size", "maxGroupSize")
+                +rangeSliderField("Price", "price")
+                +rangeSliderField("Duration Weeks", "durationWeeks")
+                +rangeSliderField("Ratings Average", "ratingsAverage")
+                +rangeSliderField("Ratings Quantity", "ratingsQuantity")
+    .dashboard__list
+        //- data-table === ${table} => `http://127.0.0.1:3000/api/v1/${table}?fields=${fields}` 
+        table#dataTable(data-table='tours')
+            thead
+                tr
+                    th ID
+                    th(data-name='imageCover') Cover Image
+                    th(data-name='name' data-type='input' aria-disabled="false") Name
+                    th(data-name='summary' data-type='editor' aria-disabled="false") Summary
+                    th(data-name='duration' data-type='input' aria-disabled="false") Duration
+                    th(data-name='maxGroupSize' data-type='input' aria-disabled="false") Max Group Size
+                    th(data-name='difficulty' data-type='select' aria-disabled="false") Difficulty
+                    th(data-name='price' data-type='input' aria-disabled="false") Price
+                    th(data-name='durationWeeks') Duration Weeks
+                    th(data-name='ratingsAverage') Ratings Average
+                    th(data-name='ratingsQuantity') Ratings Quantity
+                    th(data-name='active') Status
+                    th Actions
+        tbody

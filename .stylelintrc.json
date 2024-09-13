@@ -1,0 +1,7 @@
+{
+    "rules": {
+      "indentation": 2,
+      "color-no-invalid-hex": true,
+      "declaration-block-no-duplicate-properties": true
+    }
+  }

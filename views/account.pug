@@ -1,0 +1,62 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+    li(class=`${active ? 'side-nav--active' : ''}`)
+        a(href=`${link}`)
+            svg
+                use(xlink:href=`img/icons.svg#icon-${icon}`)
+            | #{text}
+
+block content 
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('#', t('settings'), 'settings', true)
+                    +navItem('#', t('my_bookings'), 'briefcase')
+                    +navItem('#', t('my_reviews'), 'star')
+                    +navItem('#', t('billing'), 'credit-card')
+                //- - if(user.role === 'admin')
+                //-     .admin-nav
+                //-     h5.admin-nav__heading Admin
+                //-     ul.side-nav
+                //-         +navItem('#', 'Manage tours', 'map')
+                //-         +navItem('#', 'Manage users', 'users')
+                //-         +navItem('#', 'Manage reviews', 'star')
+                //-         +navItem('#', 'Manage bookings', 'briefcase')
+
+            .user-view__content
+                .user-view__form-container
+                    h2.heading-secondary.ma-bt-md #{t('your_account_settings')}
+                    //- WITHOUT API
+                    //- form.form.form-user-data(action='/submit-user-data' method='POST' enctype='multipart/form-data')
+                    //- WITH API
+                    form.form.form-user-data
+                        .form__group
+                            label.form__label(for='name') #{t('name')}
+                            input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                        .form__group.ma-bt-md
+                            label.form__label(for='email') #{t('mail_address')}
+                            input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                        .form__group.form__photo-upload
+                            img.form__user-photo(src=`/img/users/${user.photo}`, alt=`${user.name}`)
+                            input.form__upload(type='file' accept='image/*' id='photo' name='photo')
+                            label(for='photo') #{t('choose_new_photo')}
+                        .form__group.right
+                            button.btn.btn--small.btn--green #{t('save_settings')}
+
+                .line &nbsp;
+                .user-view__form-container
+                    h2.heading-secondary.ma-bt-md #{t('password_change')}
+                    form.form.form-user-password
+                        .form__group
+                            label.form__label(for='password-current') #{t('current_password')}
+                            input#password-current.form__input(type='password' placeholder='••••••••', required, minlength='8')
+                        .form__group
+                            label.form__label(for='password') #{t('new_password')}
+                            input#password.form__input(type='password' placeholder='••••••••', required, minlength='8')
+                        .form__group.ma-bt-lg
+                            label.form__label(for='password-confirm') #{t('confirm_password')}
+                            input#password-confirm.form__input(type='password' placeholder='••••••••', required, minlength='8')
+                        .form__group.right
+                            button.btn.btn--small.btn--green.btn--save-password #{t('save_password')}

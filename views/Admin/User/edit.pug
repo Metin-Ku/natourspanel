@@ -1,0 +1,60 @@
+extends ../_content
+//- Label'ın içindeki for ile inputların name'i kesinlikle aynı olmalı
+block content
+    .dashboard
+        .dashboard__add
+            form#dataForm(data-id=`${user._id}` onsubmit='return false')
+                .wizard
+                    h3 Details
+                    section.content-container
+                        h1 User Details
+                        .content-inner 
+                            .content-box(class='w-1/2')
+                                label(for='name') Name 
+                                .input-box
+                                    input.input-text(type='text' id='name' name='name' value=`${user.name}` data-required='required')
+                            .content-box(class='w-1/2')
+                                label(for='email') E-mail 
+                                .input-box
+                                    input.input-text(type='email' id='email' name='email' value=`${user.email}` data-required='required')
+                            .content-box(class='w-1/2')
+                                label(for='role') Role 
+                                select.select-list(id='role' name='role' data-required='required')
+                                    option(value='')
+                                    each role in roles
+                                        - const isSelected = role.role === user.role
+                                        option(value=role.level, selected=isSelected)= role.role
+                            //- .content-box(class='w-1/2')
+                            //-     label(for='password') Password 
+                            //-     .input-box
+                            //-         input.input-text(type='password' id='password' name='password' value=`${user.password}`  data-min-length='8' data-required='required') 
+                            //- .content-box(class='w-1/2')
+                            //-     label(for='passwordConfirm') Password 
+                            //-     .input-box
+                            //-         input.input-text(type='password' id='passwordConfirm' name='passwordConfirm' value=`${user.password}`  data-min-length='8' data-required='required')
+                                        h3 Images
+                   
+                    h3 Photo
+                    section.content-container
+                        h1 User Photo
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--1
+                                    label.hidden(for='photo') Photo 
+                                    input.input-img.input--1(type='file' id='photo' name='photo' value=user.photo)
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (user.photo)
+                                    ul.preview-container.preview-container--1
+                                        li.preview-list
+                                            a.preview-gallery(href=`/img/users/original/${user.photo}`, data-pswp-width=`${width}`, data-pswp-height=`${height}`, tabindex='-1')
+                                                img(src=`/img/users/original/${user.photo}`, onload="getImageSize(this)")
+                                                .preview-img-options
+                                                    ul
+                                                        li.preview-zoom-in
+                                                            svg
+                                                                use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                - else
+                                    ul.preview-container.preview-container--1.hidden 
+

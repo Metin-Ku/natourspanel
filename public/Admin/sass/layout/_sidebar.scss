@@ -1,0 +1,242 @@
+.sidebar {
+  background-color: $color-tertiary;
+  // background: linear-gradient(to right bottom, $color-6, $color-primary);
+  grid-row: 1 / -1;
+  grid-column: sidebar-start / sidebar-end;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  border-radius: 8px;
+  // !!! position fixed'ı ekledikten sonra sidebar uzuyordu. width'i sabitledim. 27rem grid'teki sidebarın uzunuluğu geliyor
+  width: 27rem;
+  // !!! aşağıdaki 2rem body'nin sahip olduğu top ve bottom 1rem'den geliyor
+  height: calc(100vh - 2rem);
+  border: solid $color-grey-light-4 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sidebar-logo {
+  padding: 3rem 2rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  // border-bottom: solid $color-grey-light-4 1px;
+
+  a {
+    display: flex;
+  }
+
+  img {
+    width: 8rem;
+  }
+}
+
+.sidebar-nav {
+  padding: 1rem;
+  width: 100%;
+  // margin: 2rem 0;
+  margin: 0 0 2rem 0;
+
+  ul {
+    max-height: 100%;
+    /* Scrollbar */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: $color-5 transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $color-grey-light-3;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-6;
+      border-radius: 5px;
+    }
+  }
+
+  &__item {
+    a {
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      // flex-direction: column;
+      align-items: center;
+      border-radius: 0.8rem;
+      font-size: 1.6rem;
+      font-weight: 400;
+      gap: 1.5rem;
+      color: $color-grey-dark-1;
+      // transition: all 0.2s ease;
+
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $color-grey-dark-1;
+        // margin-bottom: 0.4rem;
+      }
+
+      &:hover {
+        background-color: $color-6-light;
+        color: $color-6;
+
+        svg {
+          transform: scale(1.05);
+          fill: $color-6; // SVG içindeki metin rengini değiştirin
+        }
+
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      margin: 0 1rem 1rem;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      margin: 1rem;
+    }
+
+    &--active {
+      background-color: $color-6-light;
+      border-radius: 0.8rem;
+      
+      a {
+        color: $color-6;
+      }
+
+      svg {
+        display: none;
+        fill: $color-6 !important;
+      }
+
+      svg + svg {
+        display: block!important;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__sub {
+    display: none;
+    grid-column: full-start / full-end;
+    grid-row: 1 / -1;
+    // background: rgba(0, 0, 0, 0.2);
+    // animation: fadeIn 0.5s ease-in;
+  }
+
+  &__sub-contents {
+    display: none;
+    background-color: $color-tertiary;
+    width: 30rem;
+    border-radius: 0px 8px 8px 0;
+  }
+
+  &__sub-content {
+    position: absolute;
+    display: none;
+    // visibility: hidden;
+    // !!! aşağıdaki 2rem body'nin sahip olduğu top ve bottom 1rem'den geliyor
+    height: calc(100vh - 2rem);
+    width: 30rem;
+    background-color: $color-tertiary;
+    border-top: solid $color-grey-light-4 1px;
+    border-right: solid $color-grey-light-4 1px;
+    border-bottom: solid $color-grey-light-4 1px;
+    border-radius: 0 8px 8px 0;
+    z-index: 10;
+    flex-direction: column;
+    justify-content: start;
+    font-size: 1.6rem;
+    padding: 5rem 1rem 5rem 3rem;
+
+    &--active {
+      display: block;
+      position: fixed;
+      z-index: 101;
+    }
+
+    &-inner {
+      /* Scrollbar */
+      height: calc(100vh - 10rem);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: $color-5 transparent;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $color-grey-light-3;
+        border-radius: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $color-6;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &__sub-box {
+    margin-bottom: 1rem;
+
+    ul {
+      padding: 1.2rem;
+
+      a {
+        color: $color-6;
+        
+        li {
+          display: flex;
+          align-items: center;
+          font-weight: 400;
+          margin-bottom: 0.3rem;
+        }
+      }
+
+      li:hover {
+        cursor: pointer;
+      }
+
+      li::before {
+        content: '';
+        // border: solid $color-6 1px;
+        // border-radius: 8px;
+        // margin-inline-end: 10px;
+        // height: 0.6rem;
+        // width: 1rem;
+        background-image: url('/img/icon-plus.svg');
+        display: inline-block;
+        width: 1.6rem;
+        height: 1.6rem;
+        margin-right: 0.5rem;
+        transition: all .2s ease-out;
+      }
+      li:hover::before {
+        background-image: url('/img/icon-plus-blue.svg');
+        // background-color: $color-6;
+      }
+
+      li:hover span {
+        color: $color-6-light-3;
+      }
+    }
+  }
+
+  &__sub-head {
+    margin-bottom: 1rem;
+
+    span {
+      font-weight: 700;
+      color: $color-6;
+    }
+  }
+}

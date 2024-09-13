@@ -1,0 +1,116 @@
+extends ../_content
+//- Label'ın içindeki for ile inputların name'i kesinlikle aynı olmalı
+block content
+    .dashboard
+        .dashboard__add
+            form#dataForm(data-id=`${slider._id}` onsubmit='return false')
+                .wizard
+                    h3 Details
+                    section.content-container
+                        h1 Slider Details
+                        .content-inner 
+                            .content-box(class='w-1/2')
+                                label(for='name') Name 
+                                .input-box
+                                    input.input-text(type='text' id='name' name='name' value=`${slider.name}` data-required='required')
+                            .content-box(class='w-1/2')
+                                label(for='link') Link
+                                .input-box
+                                    input.input-text(type='text' id='link' name='link' value=`${slider.link}` data-required='required')
+                            .content-box(class='w-1/2')
+                                label(for='description') Description
+                                .input-box
+                                    textarea.input-text(type='text' id='description' name='description' data-required='required')= slider.description
+                            .content-box(class='w-full')
+                                label(for='active') Active / Passive
+                                label.toggle-switchy(for='active')
+                                    input#active(type='checkbox' name='active' checked=slider.active ? 'checked' : false value='true')
+                                    span.toggle
+                                        span.switch                   
+                    h3 Image
+                    section.content-container
+                        h1 Original Image
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--1
+                                    label.hidden(for='imageOriginal') Photo 
+                                    input.input-img.input--1(type='file' id='imageOriginal' name='imageOriginal' value=slider.imageOriginal)
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (slider.imageOriginal)
+                                    ul.preview-container.preview-container--1
+                                        li.preview-list
+                                            a.preview-gallery(href=`/img/sliders/original/${slider.imageOriginal}`, data-pswp-width=`${width}`, data-pswp-height=`${height}`, tabindex='-1')
+                                                img(src=`/img/sliders/original/${slider.imageOriginal}`, onload="getImageSize(this)")
+                                                .preview-img-options
+                                                    ul
+                                                        li.preview-zoom-in
+                                                            svg
+                                                                use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                - else
+                                    ul.preview-container.preview-container--1.hidden 
+                        h1 Large Image
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--2
+                                    label.hidden(for='imageLarge') Photo 
+                                    input.input-img.input--2(type='file' id='imageLarge' name='imageLarge' value=slider.imageLarge)
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (slider.imageLarge)
+                                    ul.preview-container.preview-container--2
+                                        li.preview-list
+                                            a.preview-gallery(href=`/img/sliders/large/${slider.imageLarge}`, data-pswp-width=`${width}`, data-pswp-height=`${height}`, tabindex='-1')
+                                                img(src=`/img/sliders/large/${slider.imageLarge}`, onload="getImageSize(this)")
+                                                .preview-img-options
+                                                    ul
+                                                        li.preview-zoom-in
+                                                            svg
+                                                                use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                - else
+                                    ul.preview-container.preview-container--2.hidden 
+                        h1 Medium Image
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--3
+                                    label.hidden(for='imageMedium') Photo 
+                                    input.input-img.input--3(type='file' id='imageMedium' name='imageMedium' value=slider.imageMedium)
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (slider.imageMedium)
+                                    ul.preview-container.preview-container--3
+                                        li.preview-list
+                                            a.preview-gallery(href=`/img/sliders/medium/${slider.imageMedium}`, data-pswp-width=`${width}`, data-pswp-height=`${height}`, tabindex='-1')
+                                                img(src=`/img/sliders/medium/${slider.imageMedium}`, onload="getImageSize(this)")
+                                                .preview-img-options
+                                                    ul
+                                                        li.preview-zoom-in
+                                                            svg
+                                                                use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                - else
+                                    ul.preview-container.preview-container--3.hidden 
+                        h1 Small Image
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--4
+                                    label.hidden(for='imageSmall') Photo 
+                                    input.input-img.input--4(type='file' id='imageSmall' name='imageSmall' value=slider.imageSmall)
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (slider.imageSmall)
+                                    ul.preview-container.preview-container--4
+                                        li.preview-list
+                                            a.preview-gallery(href=`/img/sliders/small/${slider.imageSmall}`, data-pswp-width=`${width}`, data-pswp-height=`${height}`, tabindex='-1')
+                                                img(src=`/img/sliders/small/${slider.imageSmall}`, onload="getImageSize(this)")
+                                                .preview-img-options
+                                                    ul
+                                                        li.preview-zoom-in
+                                                            svg
+                                                                use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                - else
+                                    ul.preview-container.preview-container--4.hidden 
+

@@ -1,0 +1,33 @@
+extends base
+
+block content
+    main.main
+        .signup-form
+            h2.heading-secondary.ma-bt-lg CREATE YOUR ACCOUNT!
+            form.form.form-add-tour
+                .form__group
+                    label.form__label(for='name') Tour Name
+                    input#name.form__input(type='text', required, name='name')
+                .form__group.ma-bt-md
+                    label.form__label(for='duration') Tour Duration
+                    input#duration.form__input(type='duration', required, name='duration')
+                .form__group.ma-bt-md
+                    label.form__label(for='maxGroupSize') Tour Group Size
+                    input#maxGroupSize.form__input(type='maxGroupSize', required, name='maxGroupSize')
+                .form__group.ma-bt-md
+                    label.form__label(for='difficulty') Tour Difficulty
+                    input#difficulty.form__input(type='difficulty', required, name='difficulty')
+                .form__group.ma-bt-md
+                    label.form__label(for='summary') Tour Summary
+                    input#summary.form__input(type='summary', required, name='summary')
+                .form__group.ma-bt-md
+                    label.form__label(for='price') Tour Price
+                    input#price.form__input(type='price', required, name='price')
+                .form__group.form__photo-upload
+                    input.form__upload(type='file' accept='image/*' id='imageCover' name='imageCover')
+                    label(for='imageCover') Choose new photo
+                .form__group.form__photo-upload
+                    input.form__upload(type='file' accept='image/*' id='images' name='images')
+                    label(for='images') Choose new photo
+                .form__group.right
+                    button.btn.btn--small.btn--green Save settings

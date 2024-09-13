@@ -1,0 +1,44 @@
+mixin sidebarNavItem(text, href, activeHref, id)
+    li.sidebar-nav__item(data-tab=`${id}`)
+        a(href='javascript:void(0)')
+            svg
+                use(xlink:href=href)
+            svg.hidden
+                use(xlink:href=activeHref)
+            | #{text}
+
+mixin sidebarNavSubContent(title, links)
+    each link in links
+        .sidebar-nav__sub-box
+            .sidebar-nav__sub-head
+                span.block= title
+            ul
+                each item in link
+                    a(href=item.href)
+                        li
+                            span.block.relative
+                                | #{item.text}      
+
+
+
+nav.sidebar
+    .sidebar-logo
+        a(href="/") 
+            img(src="/img/logo-green-small.png", alt="")
+    .sidebar-nav 
+        ul 
+            +sidebarNavItem('Tour Management', '/img/icons.svg#icon-map-pin', '/img/icons.svg#icon-map-pin-filled', 1)
+            +sidebarNavItem('User Management', '/img/icons.svg#icon-user', '/img/icons.svg#icon-user-filled', 2)
+            +sidebarNavItem('Slider Management1', '/img/icons.svg#icon-sliders', '/img/icons.svg#icon-sliders', 3)
+
+.sidebar-nav__sub
+    .sidebar-nav__sub-contents
+        .sidebar-nav__sub-content(data-content="1")
+            .sidebar-nav__sub-content-inner 
+                +sidebarNavSubContent("Product Management", [[{ href: '/panel/product', text: 'Tour List' },{ href: '/panel/product/add', text: 'Add Tour' }]])
+        .sidebar-nav__sub-content(data-content="2")
+            .sidebar-nav__sub-content-inner
+                +sidebarNavSubContent("User Management", [[{ href: '/panel/user', text: 'User List' },{ href: '/panel/user/add', text: 'Add User' }]])
+        .sidebar-nav__sub-content(data-content="3")
+            .sidebar-nav__sub-content-inner
+                +sidebarNavSubContent("Slider Management", [[{ href: '/panel/slider', text: 'Slider List' },{ href: '/panel/slider/add', text: 'Add Slider' }]])

@@ -1,0 +1,48 @@
+doctype html
+html 
+    head
+        block head
+            meta(charset='UTF-8')
+            meta(name='viewport' content='width=device-width, initial-scale=1.0')
+            title Natours | #{title}
+            
+            - if (typeof css !== 'undefined')
+                    link(rel='stylesheet' href=`/${css}`)
+
+            - if (typeof scripts !== 'undefined')
+                each script in scripts
+                    script(src=`/${script}`)
+            
+            - if (typeof styles !== 'undefined')
+                each style in styles
+                    link(rel='stylesheet' href=`/${style}`)
+
+            link(rel='shorcut icon' type='image/png' href='/img/favicon.png')
+            link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,400&display=swap')
+            link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
+            link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,400&display=swap')
+
+    body 
+        .container
+            //- SIDEBAR
+            include _sidebar
+
+            //- HEADER
+            include _header
+
+            //- CONTENT
+            block _content
+
+            .overlay
+            //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+            //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js')
+            //- script(src='/js/login.js')
+            //- script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+            //- script(src='https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js')
+            //- script(src='https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')
+            - if (typeof javascript !== 'undefined')
+                each js in javascript
+                    script(src=`/${js}`)
+            //- script(src='/Admin/js/bundle.js')
+        
+            

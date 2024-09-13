@@ -1,0 +1,53 @@
+.header {
+  grid-column: header-start/header-end;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.7rem;
+  padding-bottom: 1.6rem;
+  border-bottom: solid #d3d6db 1px;
+
+  &__extend {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: solid $color-grey-light-4 1px;
+    background: $color-tertiary;
+    transition: background-color 0.3s ease;
+
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($color-grey-light-1, 0.8);
+    }
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: solid $color-grey-light-4 1px;
+    background: $color-tertiary;
+    transition: background-color 0.3s ease;
+    color: $color-black;
+    font-size: 1.5rem;
+    font-weight: 600;
+    gap: 1rem;
+
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($color-grey-light-1, 0.8);
+    }
+  }
+}

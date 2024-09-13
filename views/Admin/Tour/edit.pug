@@ -1,0 +1,190 @@
+extends ../_content
+//- Label'ın içindeki for ile inputların name'i kesinlikle aynı olmalı
+block content
+    .dashboard
+        .dashboard__add
+            form#dataForm(data-id=`${tour._id}` onsubmit='return false')
+                .wizard
+                    h3 Details
+                    section.content-container
+                        h1 Tour Details
+                        .content-inner 
+                            .content-box(class='w-1/2')
+                                label(for='name') Name 
+                                .input-box
+                                    input.input-text(type='text' id='name' name='name' value=`${tour.name}` data-required='required')
+                            .content-box(class='w-1/2')
+                                label(for='duration') Duration 
+                                .input-box
+                                    input.input-text(type='text' id='duration' name='duration' value=`${tour.duration}` data-required='required')
+                            .content-box(class='w-1/2')
+                                label(for='maxGroupSize') Max Group Size 
+                                .input-box
+                                    input.input-text(type='text' id='maxGroupSize' name='maxGroupSize' value=`${tour.maxGroupSize}` data-required='required') 
+                            .content-box(class='w-1/2')
+                                label(for='difficulty') Difficulty 
+                                select.select-list(id='difficulty' name='difficulty' data-required='required')
+                                    option(value='')
+                                    each difficulty in difficulties
+                                        - const isSelected = difficulty.level === tour.difficulty
+                                        option(value=difficulty.level, selected=isSelected)= difficulty.level
+                            .content-box(class='w-1/2')
+                                label(for='price') Price 
+                                .input-box
+                                    input.input-text(type='text' id='price' name='price' value=`${tour.price}` data-required='required') 
+                            .content-box(class='w-1/2')
+                                label(for='guides') Guides 
+                                select.select-list-multiple(id='guides' name='guides' data-required='required' multiple='multiple')
+                                    each guide in guides
+                                        - const isSelected = tour.guides.some(tourGuide => tourGuide._id.toString() == guide._id);
+                                        option(value=guide._id, selected=isSelected)= guide.name
+                            .content-box(class='w-full')
+                                label(for='editor1') Summary 
+                                #editor1(type='text' name='summary')
+                                textarea.editor1.hidden(name='summary' data-required='required') #{tour.summary}
+                                    //- script.
+                                    //-     function decodeEntities(encodedString) {
+                                    //-         var textArea = document.createElement('textarea');
+                                    //-         textArea.innerHTML = encodedString;
+                                    //-         return textArea.value;
+                                    //-     }
+
+                                    //-     const editor1Edit = decodeEntities('#{tour.summary}');
+                                    //-     console.log(`deneme değişkeninin değeri: ${editor1Edit}`);
+                            .content-box(class='w-full')
+                                label(for='editor2') Description 
+                                #editor2(type='text' name='description')
+                                textarea.editor2.hidden(name='description' data-required='required') #{tour.description}
+                            .content-box(class='w-full')
+                                label(for='active') Active / Passive
+                                label.toggle-switchy(for='active')
+                                    input#active(type='checkbox' name='active' 
+                                     value='true')
+                                    span.toggle
+                                        span.switch       
+                    h3 Dates
+                    section.content-container
+                        h1 Tour Dates
+                        .add-btn   
+                            button.add-btn__date.waves-effect
+                                svg
+                                    use(xlink:href='/img/icons.svg#icon-plus')
+
+                        each date, index in tour.startDates
+                            .content-inner.date-box.relative
+                                .date-box__line.ml-2
+                                .content-box(class='relative ml-3 w-1/3')
+                                    .date-box__dot
+                                    label(for=`startDates[${index}]`) #{index + 1}. Start Date
+                                    .input-box 
+                                        input.input-text.datepicker(type='text' id=`startDates[${index}]` name=`startDates[${index}]` data-required='required' value=date.toISOString().split('T')[0])
+
+                    h3 Locations
+                    section.content-container
+                        h1 Tour Start Location
+                        .content-inner 
+                            //- Aşağıdaki Point update'de belirtilmez ise çalışmıyor. Post için böyle bir sorun yok
+                            input(type='hidden' id='startLocation[type]' name='startLocation[type]' data-required='required' value='Point')
+                            .content-box(class='w-1/2')
+                                label(for='startLocation[coordinates][0]') Latitude
+                                .input-box
+                                    input.input-text(type='text' id='startLocation[coordinates][0]' name='startLocation[coordinates][0]' data-required='required' value= tour.startLocation.coordinates[0])
+                            .content-box(class='w-1/2')
+                                label(for='startLocation[coordinates][1]') Longitude
+                                .input-box
+                                    input.input-text(type='text' id='startLocation[coordinates][1]' name='startLocation[coordinates][1]' data-required='required' value= tour.startLocation.coordinates[1])
+                            .content-box(class='w-full')
+                                label(for='startLocation[description]') Location Description
+                                .input-box
+                                    input.input-text(type='text' id='startLocation[description]' name='startLocation[description]' data-required='required' value= tour.startLocation.description)
+                            .content-box(class='w-full')
+                                label(for='startLocation[address]') Location Address
+                                .input-box
+                                    input.input-text(type='text' id='startLocation[address]' name='startLocation[address]' data-required='required' value= tour.startLocation.address)
+
+                        h1 Tour Locations
+                        .add-btn   
+                            button.add-btn__location.waves-effect
+                                svg
+                                    use(xlink:href='/img/icons.svg#icon-plus')
+
+                        each location, index in tour.locations
+                            .location-divider
+                                .location-counter #{index + 1}
+                                .content-border
+
+                            .content-inner.location-box.pl-2
+                                //- Aşağıdaki Point update'de belirtilmez ise çalışmıyor. Post için böyle bir sorun yok
+                                input(type='hidden' id=`locations[${index}][type]` name=`locations[${index}][type]` data-required='required' value='Point')
+                                .content-box(class='w-1/2')
+                                    label(for=`locations[${index}][coordinates][0]`) Latitude
+                                    .input-box
+                                        input.input-text(type='text' id=`locations[${index}][coordinates][0]` name=`locations[${index}][coordinates][0]` data-required='required' value=location.coordinates[0])
+                                .content-box(class='w-1/2')
+                                    label(for=`locations[${index}][coordinates][1]`) Longitude
+                                    .input-box
+                                        input.input-text(type='text' id=`locations[${index}][coordinates][1]` name=`locations[${index}][coordinates][1]` data-required='required' value=location.coordinates[1])
+                                .content-box(class='w-full')
+                                    label(for=`locations[${index}][description]`) Location Description
+                                    .input-box
+                                        input.input-text(type='text' id=`locations[${index}][description]` name=`locations[${index}][description]` data-required='required' value=location.description)
+                                .content-box(class='w-full')
+                                    label(for=`locations[${index}][address]`) Location Address
+                                    .input-box
+                                        input.input-text(type='text' id=`locations[${index}][address]` name=`locations[${index}][address]` data-required='required' value=location.address)
+                                .content-box(class='w-full')
+                                    label(for=`locations[${index}][day]`) Location Day
+                                    .input-box
+                                        input.input-text(type='text' id=`locations[${index}][day]` name=`locations[${index}][day]` data-required='required' value=location.day)
+
+                    h3 Images
+                    section.content-container
+                        h1 Cover Image
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--1(data-value=`${tour.imageCover}`)
+                                    label.hidden(for='imageCover') Images 
+                                    input.input-img.input--1(type='file' id='imageCover' name='imageCover' data-required='required')
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (tour.imageCover)
+                                    ul.preview-container.preview-container--1
+                                        li.preview-list
+                                            //- - const [width, height] = imageCoverSize.split('x').map(Number);
+                                            a.preview-gallery(href=`/img/tours/original/${tour.imageCover}`, data-pswp-width=`${width}` data-pswp-height=`${height}` tabindex='-1')
+                                                img(src=`/img/tours/original/${tour.imageCover}`, onload="getImageSize(this)")
+                                                .preview-img-options
+                                                    ul
+                                                        li.preview-zoom-in
+                                                            svg
+                                                                use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                - else
+                                    ul.preview-container.preview-container--1.hidden
+
+                        h1 Tour Images
+                        .content-inner 
+                            .content-box(class='w-full')
+                                .image-box.image-box--2.multiple(data-name='images' data-value=`${tour.images}`)
+                                    label.hidden(for='images') Images 
+                                    input.input-img.input--2(type='file' id='images' name='images' data-length='3' data-required='required' multiple)
+                                    .image-upload
+                                        svg
+                                            use(xlink:href='/img/icons.svg#icon-file-plus')
+                                - if (tour.images[0])
+                                    ul.preview-container.preview-container--2
+                                        each image in tour.images
+                                            li.preview-list.preview-list--present
+                                                //- - const [width, height] = imageSize.split('x').map(Number);
+                                                a.preview-gallery(href=`/img/tours/original/${image}`, data-pswp-width=`${width}` data-pswp-height=`${height}` tabindex='-1')
+                                                    img(src=`/img/tours/original/${image}`, onload="getImageSize(this)")
+                                                    .preview-img-options
+                                                        ul
+                                                            li.preview-zoom-in
+                                                                svg
+                                                                    use(xlink:href='/img/icons.svg#icon-zoom-in')
+                                                            li.preview-delete-edit(data-image=`${image}`)
+                                                                svg
+                                                                    use(xlink:href='/img/icons.svg#icon-delete')
+                                - else
+                                    ul.preview-container.preview-container--2.hidden
