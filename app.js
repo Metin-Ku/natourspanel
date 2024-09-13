@@ -18,7 +18,7 @@ const AppError = require('./utils/appError');
 
 console.log('1');
 
-const globalErrorHandler = require('./controllers/errorController');
+// const globalErrorHandler = require('./controllers/errorController');
 
 console.log('2');
 
