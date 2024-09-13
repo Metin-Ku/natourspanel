@@ -17,6 +17,7 @@
 // select2($);
 
 const BASE_URL = 'https://natourspanel.onrender.com';
+
 const base = window.location.origin + '/panel';
 
 document.querySelector('.logout').addEventListener('click', async () => {
