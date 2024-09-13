@@ -14,6 +14,7 @@ const i18next = require('i18next');
 const i18backend = require('i18next-fs-backend');
 const i18middleware = require('i18next-http-middleware');
 
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
