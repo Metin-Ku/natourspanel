@@ -16,7 +16,7 @@
 // import Swal from 'sweetalert2';
 // select2($);
 
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'https://natourspanel.onrender.com';
 const base = window.location.origin + '/panel';
 
 document.querySelector('.logout').addEventListener('click', async () => {
