@@ -13,7 +13,7 @@ import Swiper from 'swiper';
 import axios from 'axios';
 
 // DOM ELEMENTS
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'https://natourspanel.onrender.com';
 
 const swiper = new Swiper('.swiper', {
   effect: 'fade',
