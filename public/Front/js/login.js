@@ -3,6 +3,8 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
+const BASE_URL = 'https://natourspanel.onrender.com';
+
 export const login = async (email, password) => {
   try {
     const res = await axios({
@@ -21,7 +23,7 @@ export const login = async (email, password) => {
       }, 1500);
     }
   } catch (err) {
-    console.log("err: ", err)
+    console.log('err: ', err);
     // Hata yanıtı yoksa genel bir mesaj göster
     const errorMessage =
       (err.response && err.response.data && err.response.data.message) ||
@@ -29,7 +31,6 @@ export const login = async (email, password) => {
     showAlert('error', errorMessage);
   }
 };
-
 
 export const logout = async () => {
   try {

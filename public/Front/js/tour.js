@@ -3,6 +3,9 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
+const BASE_URL = 'https://natourspanel.onrender.com';
+
+
 export const addTour = async (
   name,
   duration,

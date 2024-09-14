@@ -13,8 +13,6 @@ import Swiper from 'swiper';
 import axios from 'axios';
 
 // DOM ELEMENTS
-const BASE_URL = 'https://natourspanel.onrender.com';
-
 const swiper = new Swiper('.swiper', {
   effect: 'fade',
   navigation: { nextEl: '.slide-next', prevEl: '.slide-prev' },
