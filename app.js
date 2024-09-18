@@ -1,4 +1,4 @@
-const job = require('../cron.cjs'); // job is the cron job instance
+const job = require('./cron.cjs'); // job is the cron job instance
 
 const path = require('path');
 const express = require('express');
