@@ -1,3 +1,5 @@
+const job = require('../cron.cjs'); // job is the cron job instance
+
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -171,7 +173,7 @@ app.use((req, res, next) => {
 app.get('/api/v1/example', (req, res) => {
   res.send('Bu bir örnek API endpointidir.');
 });
-console.log('12222222222222222');
+
 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
