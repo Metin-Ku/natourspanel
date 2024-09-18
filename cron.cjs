@@ -5,7 +5,7 @@ const https = require('https');
 console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmm');
 
 const backendUrl = 'https://natourspanel.onrender.com/api/v1/example';
-const job = new cron.CronJob('*/1 * * * *', function () {
+const job = new cron.CronJob('*/14 * * * *', function () {
   console.log('Restarting server');
 
   https
